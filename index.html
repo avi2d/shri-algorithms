@@ -122,6 +122,21 @@
 
     return bracketsStack.length === 0;
   };
+
+  range = (from, to) => [...Array(to - from + 1).keys()].map(i => i + from);
+
+  window.printPrimes = (n) => {
+    let allNumbers = range(2, n);
+    let p = 2;
+
+    for (let i = 0; i * i < n; i++) {
+      allNumbers = allNumbers.filter(number => number === p || number % p !== 0);
+
+      p = allNumbers.find(number => number > p);
+    }
+
+    console.log(allNumbers);
+  };
 </script>
 </body>
 </html>
