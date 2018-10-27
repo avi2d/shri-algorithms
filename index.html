@@ -93,8 +93,34 @@
 
       if (!node.children) continue;
 
-      node.children.map(node => queue.push(node));
+      node.children.map(child => queue.push(child));
     }
+  };
+
+  const LEFT_BRACKETS = ['{', '[', '('];
+  const RIGHT_BRACKETS = ['}', ']', ')'];
+
+  const isBracket = char => [...LEFT_BRACKETS, ...RIGHT_BRACKETS].some(bracket => bracket === char);
+
+  const isPair = (char1, char2) =>
+    LEFT_BRACKETS.findIndex(char => char === char1) ===
+    RIGHT_BRACKETS.findIndex(char => char === char2);
+
+  window.isValidBrackets = (string) => {
+    const bracketsArray = string.split('').filter(isBracket);
+    const bracketsStack = [bracketsArray.shift()];
+
+    while (bracketsArray.length > 0) {
+      const currentBracket = bracketsArray.shift();
+
+      if (isPair(bracketsStack[bracketsStack.length - 1], currentBracket)) {
+        bracketsStack.pop();
+      } else {
+        bracketsStack.push(currentBracket)
+      }
+    }
+
+    return bracketsStack.length === 0;
   };
 </script>
 </body>
