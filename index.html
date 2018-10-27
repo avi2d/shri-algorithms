@@ -137,6 +137,26 @@
 
     return allNumbers;
   };
+
+  window.binarySearch = (array, searched) => {
+    let currentShift = Math.floor(array.length / 2);
+    let middleIndex = currentShift;
+
+    for (let i = 0; i < Math.log2(array.length) + 1; i++) {
+      const middle = array[middleIndex];
+      currentShift = Math.max(Math.floor(currentShift / 2), 1);
+
+      if (middle === searched) return middleIndex;
+
+      if (middle > searched) {
+        middleIndex -= currentShift;
+      } else {
+        middleIndex += currentShift;
+      }
+    }
+
+    return -1;
+  };
 </script>
 </body>
 </html>
