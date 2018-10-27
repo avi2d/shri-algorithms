@@ -17,11 +17,27 @@
     const result = array;
 
     for (let i = 0; i < result.length; i++) {
-      for (let j = 0; j < result.length - 1; j++) {
+      for (let j = i; j < result.length - 1; j++) {
         if (result[j] > result[j + 1]) {
           swap(result, j, j + 1)
         }
       }
+    }
+
+    return result;
+  };
+
+  window.selectionSort = (array) => {
+    const result = array;
+
+    for (let i = 0; i < result.length; i++) {
+      let maxIndex = 0;
+
+      for (let j = 1; j < result.length - i; j++) {
+        maxIndex = result[j] > result[maxIndex] ? j : maxIndex;
+      }
+
+      swap(result, maxIndex, result.length - i - 1);
     }
 
     return result;
