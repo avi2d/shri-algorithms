@@ -42,6 +42,26 @@
 
     return result;
   };
+
+  window.insertionSort = (array) => {
+    const result = array;
+
+    for (let i = 0; i < result.length - 1; i++) {
+      const currentIndex = result.length - i - 2;
+      const current = result[currentIndex];
+
+      for (let j = currentIndex; j < result.length; j++) {
+        if (current > result[j + 1]) {
+          result[j] = result[j + 1];
+        } else {
+          result[j] = current;
+          break;
+        }
+      }
+    }
+
+    return result;
+  };
 </script>
 </body>
 </html>
